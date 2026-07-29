@@ -1,0 +1,481 @@
+:root {
+  --steel-900: #1e2126;
+  --steel-800: #2b2f36;
+  --steel-600: #545b66;
+  --paper: #eeece5;
+  --paper-card: #ffffff;
+  --line: #d9d5c9;
+  --iron-orange: #e2611f;
+  --iron-orange-dark: #b84c17;
+  --receipt-green: #2f6f62;
+  --danger: #c23b3b;
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans Khmer', 'Khmer OS', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--steel-900);
+}
+
+/* signature: corrugated-sheet stripe motif, echoing ជីឡាវ (roofing sheets) */
+.corrugated-strip {
+  height: 10px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    115deg,
+    var(--iron-orange) 0px,
+    var(--iron-orange) 14px,
+    var(--steel-900) 14px,
+    var(--steel-900) 16px
+  );
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header.topbar {
+  background: var(--steel-900);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+header.topbar h1 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+header.topbar .tagline {
+  font-size: 12px;
+  color: #b9c0cc;
+}
+
+.main-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  padding: 20px 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--steel-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 4px 0 12px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.product-card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 33, 38, 0.12);
+  border-color: var(--iron-orange);
+}
+
+.product-card .icon-bar {
+  height: 4px;
+  width: 36px;
+  margin: 0 auto 10px;
+  background: var(--iron-orange);
+  border-radius: 2px;
+}
+
+.product-card .name {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.product-card .tag {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--steel-600);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+/* Cart panel */
+.cart-panel {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+}
+
+.cart-items {
+  overflow-y: auto;
+  flex: 1;
+  margin: 8px 0;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 13px;
+}
+
+.cart-row .desc {
+  flex: 1;
+}
+
+.cart-row .desc .sub {
+  color: var(--steel-600);
+  font-size: 11px;
+}
+
+.cart-row .amount {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.cart-row button.remove {
+  color: var(--danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+.totals-block {
+  border-top: 2px solid var(--steel-900);
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.totals-block .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+}
+
+.totals-block .grand {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--iron-orange-dark);
+}
+
+input,
+select {
+  font-family: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 13px;
+  width: 100%;
+  background: #fff;
+}
+
+label {
+  font-size: 12px;
+  color: var(--steel-600);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.field-row {
+  margin-bottom: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--iron-orange);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--iron-orange-dark);
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid var(--steel-900);
+  color: var(--steel-900);
+}
+
+.btn-green {
+  background: var(--receipt-green);
+  color: #fff;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 25, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-box h2 {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+.variant-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.variant-btn {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.variant-btn.selected,
+.variant-btn:hover {
+  border-color: var(--iron-orange);
+  background: #fdece2;
+}
+
+.variant-btn .price {
+  display: block;
+  color: var(--iron-orange-dark);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.shape-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.shape-toggle button {
+  flex: 1;
+  padding: 8px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.shape-toggle button.active {
+  background: var(--steel-900);
+  color: #fff;
+  border-color: var(--steel-900);
+}
+
+.calc-preview {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.calc-preview .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--iron-orange-dark);
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px 4px;
+  flex-wrap: wrap;
+}
+
+/* Invoice / receipt view */
+.invoice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 25, 0.6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  z-index: 60;
+  padding: 30px 16px;
+}
+
+.invoice-doc {
+  background: #fff;
+  width: 100%;
+  max-width: 560px;
+  padding: 28px;
+  border-radius: 6px;
+}
+
+.invoice-doc .doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 3px solid var(--steel-900);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.invoice-doc h2 {
+  margin: 0 0 4px;
+}
+
+.invoice-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.invoice-doc th {
+  text-align: left;
+  border-bottom: 1px solid var(--steel-900);
+  padding: 6px 4px;
+  font-size: 12px;
+  color: var(--steel-600);
+}
+
+.invoice-doc td {
+  padding: 6px 4px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.invoice-doc .doc-totals {
+  margin-top: 12px;
+  margin-left: auto;
+  width: 260px;
+}
+
+.invoice-doc .doc-totals .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 13px;
+}
+
+.invoice-doc .doc-totals .grand {
+  font-size: 18px;
+  font-weight: 700;
+  border-top: 2px solid var(--steel-900);
+  margin-top: 4px;
+  padding-top: 6px;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.receipt-narrow {
+  font-family: 'Noto Sans Khmer', monospace;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-area,
+  #printable-area * {
+    visibility: visible;
+  }
+  #printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
